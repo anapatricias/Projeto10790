@@ -1,6 +1,12 @@
-from Models.Caso_Clinico import CasoClinico
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-# Exemplo de caso clínico
+from models.caso_clinico import CasoClinico
+from controllers.casos_controller import guardar_caso
+
+
+# Criar um caso clínico 
 caso = CasoClinico(
     id=1,
     titulo="Tumor raro",
@@ -10,3 +16,7 @@ caso = CasoClinico(
 )
 
 print(caso)
+
+# Guardar o caso 
+guardar_caso(caso)
+print("Caso clínico guardado com sucesso na base de dados!")
