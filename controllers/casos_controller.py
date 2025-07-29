@@ -1,19 +1,8 @@
-import sqlite3
+casos = []
 
 def guardar_caso(caso):
-    conn = sqlite3.connect("ligaclinica.db")
-    cursor = conn.cursor()
+    casos.append(caso)
+    print(f"Caso {caso.id} guardado com sucesso!")
 
-    cursor.execute("""
-        INSERT INTO casos_clinicos (idade, sexo, diagnostico, caracteristica, descricao)
-        VALUES (?, ?, ?, ?, ?)
-    """, (
-        45,  
-        "F",
-        caso.titulo,
-        "mutação X",
-        caso.descricao
-    ))
-
-    conn.commit()
-    conn.close()
+def listar_casos_por_autor(autor):
+    return [caso for caso in casos if caso.autor == autor]

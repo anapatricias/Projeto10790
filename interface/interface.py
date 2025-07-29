@@ -1,3 +1,7 @@
+import sys
+import os
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from models.caso_clinico import CasoClinico
 from controllers.casos_controller import guardar_caso, listar_casos_por_autor
 
@@ -22,7 +26,11 @@ def menu_investigador():
             print("❌ Opção inválida.")
 
 def criar_caso(autor):
-    id = int(input("ID: "))
+    try:
+        id = int(input("ID: "))
+    except ValueError:
+        print("ID tem de ser um número inteiro!")
+        return
     titulo = input("Título: ")
     descricao = input("Descrição: ")
     data = input("Data (YYYY-MM-DD): ")
@@ -37,3 +45,6 @@ def ver_casos(autor):
     else:
         for caso in casos:
             print(caso)
+
+if __name__ == "__main__":
+    menu_investigador()
